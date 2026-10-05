@@ -1,0 +1,212 @@
+{
+  "network": "studionet",
+  "chain_id": 61999,
+  "contract": "0x6fB2b29E061e06E95EFB1AF15e35b1cC1FE68Da8",
+  "explorer": "https://explorer-studio.genlayer.com/address/0x6fB2b29E061e06E95EFB1AF15e35b1cC1FE68Da8",
+  "source_sha256": "7c272a9d3f0ee539ec46cc419f4e929aada00881a4ed14e1b5ea8525bc140893",
+  "constructor": {},
+  "accounts": {
+    "seller": "0xA10dc728Deb2623c9275a0c86dB8D0e85A77b03E",
+    "buyer": "0x5Dcd19bb0CAf65be1d8765398F3a52D6D244Fc95",
+    "stranger": "0x0BFD705617Bd7eaCd1DFa7964342231fFF9Dd700"
+  },
+  "balances": {
+    "seller_before": "2000000000000000000",
+    "buyer_before": "0",
+    "seller_after": "1300000000000000000",
+    "buyer_after": "300000000000000000"
+  },
+  "held_after": "0",
+  "steps": [
+    {
+      "step": "deploy",
+      "method": "deploy",
+      "from": "0xA10dc728Deb2623c9275a0c86dB8D0e85A77b03E",
+      "tx": "0xf1772b8dd9084ca53b57c36dd54c03643ae156f9352360be9f650bb51d7e1c61",
+      "status": "FINALIZED",
+      "ok": true,
+      "refusal": "",
+      "address": "0x6fB2b29E061e06E95EFB1AF15e35b1cC1FE68Da8"
+    },
+    {
+      "step": "warranty 0 opened: three covered defects, every payout paid in",
+      "method": "open",
+      "from": "0xA10dc728Deb2623c9275a0c86dB8D0e85A77b03E",
+      "tx": "0xf1480f97ec836702d02a9e76133e188cfac03754fdaec86d905c90d8568f476a",
+      "status": "ACCEPTED",
+      "ok": true,
+      "refusal": ""
+    },
+    {
+      "step": "a stranger claims",
+      "method": "claim",
+      "from": "0x0BFD705617Bd7eaCd1DFa7964342231fFF9Dd700",
+      "tx": "0x1a3dba37c99ed24b92d7e338eaffb9d1fb2d9bac38af0123a6dc46bd5d54a125",
+      "status": "ACCEPTED",
+      "ok": false,
+      "refusal": "[EXPECTED] only the buyer named in the warranty may claim"
+    },
+    {
+      "step": "the pump: covered defect 0, paid",
+      "method": "claim",
+      "from": "0x5Dcd19bb0CAf65be1d8765398F3a52D6D244Fc95",
+      "tx": "0xf25a32698d1964ffd267481f24061e76e67f29ace71b3b68982a57e7f515e1cc",
+      "status": "ACCEPTED",
+      "ok": true,
+      "refusal": ""
+    },
+    {
+      "step": "the same account again",
+      "method": "claim",
+      "from": "0x5Dcd19bb0CAf65be1d8765398F3a52D6D244Fc95",
+      "tx": "0x49663ffe211ba9950e0b18d5f8512e968a10c2ba13a93af81625bf80f75005aa",
+      "status": "ACCEPTED",
+      "ok": false,
+      "refusal": "[EXPECTED] this account was already decided as claim 0; that answer stands"
+    },
+    {
+      "step": "the boiler, after a fall: excluded, declined",
+      "method": "claim",
+      "from": "0x5Dcd19bb0CAf65be1d8765398F3a52D6D244Fc95",
+      "tx": "0x006142bfdf37f6e9a8393b43181e39c7181e7942d948923caeefeaef42b0e2f9",
+      "status": "ACCEPTED",
+      "ok": true,
+      "refusal": ""
+    },
+    {
+      "step": "the pump again: already paid",
+      "method": "claim",
+      "from": "0x5Dcd19bb0CAf65be1d8765398F3a52D6D244Fc95",
+      "tx": "0x66867ff034404f21f11349a1e1a1ced59cff6e09dfa0a39fcefe72a4c7fcc351",
+      "status": "ACCEPTED",
+      "ok": true,
+      "refusal": ""
+    },
+    {
+      "step": "a fourth claim",
+      "method": "claim",
+      "from": "0x5Dcd19bb0CAf65be1d8765398F3a52D6D244Fc95",
+      "tx": "0x7af6e4298d9810eb8967d6c135d09b7ac0272581ad9d05b0e5f6540ebc8f8891",
+      "status": "ACCEPTED",
+      "ok": false,
+      "refusal": "[EXPECTED] a warranty takes at most 3 claims"
+    },
+    {
+      "step": "the seller releases before the end",
+      "method": "release",
+      "from": "0xA10dc728Deb2623c9275a0c86dB8D0e85A77b03E",
+      "tx": "0x905b6ae7e189f561b562156ce06582084300a6358ab45310c3dbedc1f19cecad",
+      "status": "ACCEPTED",
+      "ok": false,
+      "refusal": "[EXPECTED] the warranty runs until 2026-10-05T23:32:16Z"
+    },
+    {
+      "step": "a claim after the warranty ended",
+      "method": "claim",
+      "from": "0x5Dcd19bb0CAf65be1d8765398F3a52D6D244Fc95",
+      "tx": "0xcb8b0e1f11ae548861e0101dfd1eeac248c38dede79d6e75750321d2004b8cf3",
+      "status": "ACCEPTED",
+      "ok": false,
+      "refusal": "[EXPECTED] the warranty ended at 2026-10-05T23:32:16Z; nothing can be claimed or ruled after it"
+    },
+    {
+      "step": "the rest released to the seller",
+      "method": "release",
+      "from": "0x0BFD705617Bd7eaCd1DFa7964342231fFF9Dd700",
+      "tx": "0x4d4b5f871dc300890a66284832400950e684761d521aca6ac6eb0f75af3990ca",
+      "status": "ACCEPTED",
+      "ok": true,
+      "refusal": ""
+    }
+  ],
+  "warranties": [
+    {
+      "warranty": {
+        "buyer": "0x5Dcd19bb0CAf65be1d8765398F3a52D6D244Fc95",
+        "claims": 3,
+        "closed_at": "2026-10-05T23:33:07Z",
+        "defects": 3,
+        "ends_at": "2026-10-05T23:32:16Z",
+        "funded": "700000000000000000",
+        "held": "0",
+        "opened_at": "2026-10-05T23:22:16Z",
+        "paid_out": "300000000000000000",
+        "product": "Kestrel K2 espresso machine, serial KS2-40871",
+        "refunded": "400000000000000000",
+        "seller": "0xA10dc728Deb2623c9275a0c86dB8D0e85A77b03E",
+        "status": "closed"
+      },
+      "terms": {
+        "defects": [
+          {
+            "index": 0,
+            "paid_by": 0,
+            "payout": "300000000000000000",
+            "text": "The pump stops pushing water through the group head",
+            "warranty": 0
+          },
+          {
+            "index": 1,
+            "paid_by": -1,
+            "payout": "300000000000000000",
+            "text": "The boiler does not heat water to brewing temperature",
+            "warranty": 0
+          },
+          {
+            "index": 2,
+            "paid_by": -1,
+            "payout": "100000000000000000",
+            "text": "The steam wand leaks or produces no steam",
+            "warranty": 0
+          }
+        ],
+        "exclusions": [
+          "Damage from dropping the machine or knocking it over",
+          "Liquid spilled into the body or the electronics of the machine"
+        ],
+        "product": "Kestrel K2 espresso machine, serial KS2-40871"
+      },
+      "claims": [
+        {
+          "account": "Since Tuesday the pump hums when I press the brew button, but no water at all comes through the group head, with fresh coffee and a clean basket.",
+          "at": "2026-10-05T23:22:55.737038Z",
+          "defect": "0",
+          "digest": "72e9375c082e9d7d9356951b0437d12e9b5620d9dd0a7e771a41f121449ae9b2",
+          "id": 0,
+          "outcome": "paid",
+          "paid": "300000000000000000",
+          "reason_is_leader_supplied": true,
+          "seq": 1,
+          "warranty": 0,
+          "why": "Pump hums but no water flows through the group head, matching defect 0."
+        },
+        {
+          "account": "My cat knocked the machine off the kitchen counter last night, and since then the boiler stays cold and the water never heats up.",
+          "at": "2026-10-05T23:24:21.179131Z",
+          "defect": "none",
+          "digest": "2337e745654a35eab34f41613167694ac3c63851fbb5048eb54e263495056986",
+          "id": 1,
+          "outcome": "declined",
+          "paid": "0",
+          "reason_is_leader_supplied": true,
+          "seq": 2,
+          "warranty": 0,
+          "why": "Cat knocked the machine off the counter, which is excluded damage from being dropped/knocked over."
+        },
+        {
+          "account": "The pump has stopped working again: it buzzes when I start a shot but pushes no water through the group head at all.",
+          "at": "2026-10-05T23:24:51.776265Z",
+          "defect": "0",
+          "digest": "b81d9237543e386c74baee7c79e703c2452d4ccaba79b7e50f9871c0477a5008",
+          "id": 2,
+          "outcome": "already_paid",
+          "paid": "0",
+          "reason_is_leader_supplied": true,
+          "seq": 3,
+          "warranty": 0,
+          "why": "Buyer states pump buzzes but pushes no water through the group head, matching covered defect 0 exactly."
+        }
+      ]
+    }
+  ]
+}
